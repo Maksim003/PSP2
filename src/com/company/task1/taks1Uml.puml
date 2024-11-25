@@ -1,0 +1,39 @@
+@startuml
+class com.company.task1.Main {
+~ {static} Scanner sc
++ {static} void main(String[])
++ {static} int getPosInt()
++ {static} int menu()
+}
+class com.company.task1.MyThread {
+~ Workers workers
+~ Clients clients
++ void run()
+}
+class com.company.task1.Workers {
+- int time
+- int count
++ int getTime()
++ void setTime(int)
++ int getCount()
++ void setCount(int)
++ void countClients()
+}
+class com.company.task1.Clients {
+- int count
+- int time
++ int getCount()
++ void setCount(int)
++ int getTime()
++ void setTime(int)
++ void serveClients()
+}
+
+
+com.company.task1.Thread <|-- com.company.task1.MyThread
+com.company.task1.Workers <|-- com.company.task1.Main
+com.company.task1.Clients <|-- com.company.task1.Main
+com.company.task1.MyThread <|-- com.company.task1.Main
+com.company.task1.Workers <|-- com.company.task1.MyThread
+com.company.task1.Clients <|-- com.company.task1.MyThread
+@enduml

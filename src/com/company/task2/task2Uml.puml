@@ -1,0 +1,47 @@
+@startuml
+class com.company.task2.Car {
+~ OfficeOfParking officeOfParking
++ void run()
+}
+class com.company.task2.Parking {
+- ConcurrentLinkedQueue<Place> places
++ int id_parking
++ Semaphore semaphore
++ ConcurrentLinkedQueue<Place> getPlaces()
++ void setPlaces(ConcurrentLinkedQueue<Place>)
++ int getId_parking()
++ void setId_parking(int)
++ Place bookPlace()
++ void releasePlace(Place)
+}
+class com.company.task2.Place {
+- int id_place
+- int id_parking
++ int getId_place()
++ void setId_place(int)
++ int getId_parking()
++ void setId_parking(int)
++ void waitPlace()
+}
+class com.company.task2.OfficeOfParking {
+- ArrayList<Parking> parkings
+- ReentrantLock lock
++ ArrayList<Parking> getParkings()
++ void setParkings(ArrayList<Parking>)
++ Place bookPlaceOfParking()
++ boolean releasePlaceOfParking(Place)
+}
+class com.company.task2.Main {
+~ {static} long timeout
++ {static} void main(String[])
+}
+
+
+com.company.task2.Thread <|-- com.company.task2.Car
+com.company.task2.Parking <|-- com.company.task2.OfficeOfParking
+com.company.task2.Place <|-- com.company.task2.Parking
+com.company.task2.Place <|-- com.company.task2.Main
+com.company.task2.Parking <|-- com.company.task2.Main
+com.company.task2.OfficeOfParking <|-- com.company.task2.Main
+com.company.task2.Car <|-- com.company.task2.Main
+@enduml
